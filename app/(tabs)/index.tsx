@@ -1,74 +1,129 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import {
+   View,
+   Text,
+   SafeAreaView,
+   ScrollView,
+   TouchableOpacity,
+} from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import SearchBar from '../../components/SearchBar';
+import CategoryCard from '../../components/CategoryCard';
+import FilterSelector from '../../components/FilterSelector';
+import ProductCard from '../../components/ProductCard';
+import ReferenceCard from '../../components/ReferenceCard';
+import AdvantageCard from '../../components/AdvantageCard';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const HomeScreen: React.FC = () => {
+   return (
+      <SafeAreaView className="flex-1 bg-white">
+         <View className="pt-2 px-6 flex-row items-center justify-between bg-">
+            <View className="w-[85%]">
+               <SearchBar />
+            </View>
+            <TouchableOpacity>
+               <Feather name="bell" size={26} color="#9ca3af" />
+            </TouchableOpacity>
+         </View>
 
-export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
-}
+         <View className="mt-8 pl-3">
+            <FilterSelector />
+         </View>
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+         <ScrollView className="pt-6">
+            {/* Products Section */}
+            <View className="mt-6">
+               {/* First Row */}
+               <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  className="px-4"
+               >
+                  <ProductCard 
+                     name="Banana"
+                     isAvailable={true}
+                     returnRate={47}
+                     investmentAmount="Rp 5.000.000"
+                  />
+                  <ProductCard 
+                     name="Apple"
+                     isAvailable={false}
+                     returnRate={38}
+                     investmentAmount="Rp 3.500.000"
+                  />
+                  <ProductCard 
+                     name="Mango"
+                     returnRate={42}
+                     investmentAmount="Rp 4.200.000"
+                  />
+                  {/* Add more cards as needed */}
+               </ScrollView>
+            </View>
+
+            {/* References Section */}
+            <View className="pt-6 pb-6">
+               <View className="flex-row justify-between items-center px-4 mb-6">
+                  <Text className="text-xl font-semibold">References</Text>
+                  <TouchableOpacity>
+                     <Text className="text-sm text-gray-500">See more</Text>
+                  </TouchableOpacity>
+               </View>
+
+               <View className="flex-col px-4 space-y-6">
+                  <ReferenceCard 
+                     title="White Pepper, Used to be more Valuable than gold"
+                     author="Muhaimin Iqbal"
+                  />
+                  <ReferenceCard 
+                     title="The History of Spice Trade in Indonesia"
+                     author="Sarah Johnson"
+                  />
+                  <ReferenceCard 
+                     title="Agricultural Investment Opportunities"
+                     author="David Chen"
+                  />
+               </View>
+            </View>
+
+            {/* Advantages Section */}
+            <View className="pt-6 pb-6">
+               <Text className="px-4 text-xl font-semibold mb-6">
+                  Advantages of iPlant
+               </Text>
+
+               <ScrollView 
+                  horizontal 
+                  showsHorizontalScrollIndicator={false}
+                  className="px-4"
+               >
+                  <View className="flex-row space-x-4">
+                     <View className="w-[280px]">
+                        <AdvantageCard 
+                           title="Practical and Safe"
+                           description="Secure transactions with advanced encryption and real-time monitoring"
+                           icon="shield"
+                        />
+                     </View>
+                     <View className="w-[280px]">
+                        <AdvantageCard 
+                           title="Free Transaction"
+                           description="No hidden fees or charges on all your investments"
+                           icon="dollar-sign"
+                        />
+                     </View>
+                     <View className="w-[280px]">
+                        <AdvantageCard 
+                           title="Expert Support"
+                           description="24/7 access to agricultural investment experts"
+                           icon="headphones"
+                        />
+                     </View>
+                  </View>
+               </ScrollView>
+            </View>
+         </ScrollView>
+      </SafeAreaView>
+   );
+};
+
+export default HomeScreen;
