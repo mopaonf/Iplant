@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ImageSourcePropType } from 'react-native';
 
 interface ReferenceCardProps {
    title: string;
    author: string;
-   imageUrl?: string;
+   imageUrl: ImageSourcePropType;
 }
 
 const ReferenceCard: React.FC<ReferenceCardProps> = ({ 
    title, 
    author, 
-   imageUrl = "https://placeholder.com/150" 
+   imageUrl
 }) => {
    return (
       <View className="h-[150px] bg-white rounded-xl p-4 flex-row shadow-sm">
@@ -28,7 +28,7 @@ const ReferenceCard: React.FC<ReferenceCardProps> = ({
          <View className="flex-[0.35] justify-center">
             <View className="bg-gray-200 rounded-lg overflow-hidden h-[120px]">
                <Image 
-                  source={{ uri: imageUrl }}
+                  source={imageUrl}
                   className="w-full h-full"
                   resizeMode="cover"
                />

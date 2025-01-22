@@ -13,6 +13,14 @@ import FilterSelector from '../../components/FilterSelector';
 import ProductCard from '../../components/ProductCard';
 import ReferenceCard from '../../components/ReferenceCard';
 import AdvantageCard from '../../components/AdvantageCard';
+import Product_Banana from '../../assets/images/Product_Banana.png';
+import Product_Banana2 from '../../assets/images/Product_Banana.png';
+import Product_Apple from '../../assets/images/Product_Banana.png';
+import Product_Mango from '../../assets/images/Product_Banana.png';
+import Ref_WhitePepper from '../../assets/images/Product_WhitePepper.png';
+import Ref_SpiceTrade from '../../assets/images/Product_WhitePepper.png';
+import Ref_Agriculture from '../../assets/images/Product_WhitePepper.png';
+// Import other product images...
 
 const HomeScreen: React.FC = () => {
    return (
@@ -39,22 +47,25 @@ const HomeScreen: React.FC = () => {
                   showsHorizontalScrollIndicator={false}
                   className="px-4"
                >
-                  <ProductCard 
+                  <ProductCard
                      name="Banana"
                      isAvailable={true}
                      returnRate={47}
                      investmentAmount="Rp 5.000.000"
+                     images={[Product_Banana]}
                   />
-                  <ProductCard 
+                  <ProductCard
                      name="Apple"
                      isAvailable={false}
                      returnRate={38}
                      investmentAmount="Rp 3.500.000"
+                     images={[Product_Apple]}
                   />
-                  <ProductCard 
+                  <ProductCard
                      name="Mango"
                      returnRate={42}
                      investmentAmount="Rp 4.200.000"
+                     images={[Product_Mango]}
                   />
                   {/* Add more cards as needed */}
                </ScrollView>
@@ -70,17 +81,20 @@ const HomeScreen: React.FC = () => {
                </View>
 
                <View className="flex-col px-4 space-y-6">
-                  <ReferenceCard 
+                  <ReferenceCard
                      title="White Pepper, Used to be more Valuable than gold"
                      author="Muhaimin Iqbal"
+                     imageUrl={Ref_WhitePepper}
                   />
-                  <ReferenceCard 
+                  <ReferenceCard
                      title="The History of Spice Trade in Indonesia"
                      author="Sarah Johnson"
+                     imageUrl={Ref_SpiceTrade}
                   />
-                  <ReferenceCard 
+                  <ReferenceCard
                      title="Agricultural Investment Opportunities"
                      author="David Chen"
+                     imageUrl={Ref_Agriculture}
                   />
                </View>
             </View>
@@ -91,28 +105,28 @@ const HomeScreen: React.FC = () => {
                   Advantages of iPlant
                </Text>
 
-               <ScrollView 
-                  horizontal 
+               <ScrollView
+                  horizontal
                   showsHorizontalScrollIndicator={false}
                   className="px-4"
                >
                   <View className="flex-row space-x-4">
                      <View className="w-[280px]">
-                        <AdvantageCard 
+                        <AdvantageCard
                            title="Practical and Safe"
                            description="Secure transactions with advanced encryption and real-time monitoring"
                            icon="shield"
                         />
                      </View>
                      <View className="w-[280px]">
-                        <AdvantageCard 
+                        <AdvantageCard
                            title="Free Transaction"
                            description="No hidden fees or charges on all your investments"
                            icon="dollar-sign"
                         />
                      </View>
                      <View className="w-[280px]">
-                        <AdvantageCard 
+                        <AdvantageCard
                            title="Expert Support"
                            description="24/7 access to agricultural investment experts"
                            icon="headphones"

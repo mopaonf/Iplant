@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Colors } from '../constants/Colors';
-import Product_Banana from '../assets/images/Product_Banana.jpg';
 
 interface ProductCardProps {
    name: string;
    isAvailable?: boolean;
    returnRate: number;
    investmentAmount: string;
+   images: string[]; // Array of image paths
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -15,6 +15,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
    isAvailable = true,
    returnRate,
    investmentAmount,
+   images,
 }) => {
    return (
       <TouchableOpacity className="w-[150px] h-[230px] relative ml-[10px] mr-14 mb-4">
@@ -24,7 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             className="rounded-xl p-3 shadow-sm h-full"
          >
             {/* Status Badge */}
-            <View className="absolute left-[-8] top-10 z-10">
+            <View className="absolute left-[-6] top-10 z-10">
                <Text
                   className="text-lg font-medium text-white"
                   style={{ transform: [{ rotate: '270deg' }] }}
@@ -33,14 +34,28 @@ const ProductCard: React.FC<ProductCardProps> = ({
                </Text>
             </View>
 
-            {/* Product Image Card */}
-            <View className="absolute -right-2 -top-2 bg-transparent w-32 h-32 rounded-xl overflow-hidden">
-               <Image
-                  source={Product_Banana}
-                  className="w-full h-full"
-                  resizeMode="cover"
-               />
-            </View>
+            {/* Product Images */}
+            {images.map((image, index) => (
+               <View
+                  key={index}
+                  className="absolute w-40 h-40"
+                  style={{
+                     right: -44 + index * 15, // Stack images with overlap
+                     top: -16 + index * 8, // Slight vertical offset
+                     zIndex: images.length - index, // Stack order
+                  }}
+               >
+                  <Image
+                     source={image}
+                     style={{
+                        width: '90%',
+                        height: '90%',
+                        resizeMode: 'contain',
+                        transform: [{ scale: 1.2 }],
+                     }}
+                  />
+               </View>
+            ))}
 
             {/* Product Details (positioned at bottom) */}
             <View className="mt-36 pt-2">
