@@ -21,7 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <TouchableOpacity className="w-[150px] h-[230px] relative ml-[10px] mr-14 mb-4">
          {/* Main Card Container */}
          <View
-            style={{ backgroundColor: Colors.light.primary }}
+            style={{ backgroundColor: Colors.dark.primaryDark }}
             className="rounded-xl p-3 shadow-sm h-full"
          >
             {/* Status Badge */}

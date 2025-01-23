@@ -29,7 +29,7 @@ const CategoryFilter: React.FC = () => {
                key={category.id}
                onPress={() => setActive(category.id)}
                style={{ 
-                  backgroundColor: active === category.id ? Colors.light.primary : 'transparent',
+                  backgroundColor: active === category.id ? Colors.dark.primaryDark : 'transparent',
                   borderColor: Colors.light.primary,
                   borderWidth: 1,
                }}

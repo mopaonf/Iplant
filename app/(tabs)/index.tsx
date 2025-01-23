@@ -51,20 +51,20 @@ const HomeScreen: React.FC = () => {
                      name="Banana"
                      isAvailable={true}
                      returnRate={47}
-                     investmentAmount="Rp 5.000.000"
+                     investmentAmount="Fcfa 5.000.000"
                      images={[Product_Banana]}
                   />
                   <ProductCard
                      name="Apple"
                      isAvailable={false}
                      returnRate={38}
-                     investmentAmount="Rp 3.500.000"
+                     investmentAmount="Fcfa 3.500.000"
                      images={[Product_Apple]}
                   />
                   <ProductCard
                      name="Mango"
                      returnRate={42}
-                     investmentAmount="Rp 4.200.000"
+                     investmentAmount="Fcfa 4.200.000"
                      images={[Product_Mango]}
                   />
                   {/* Add more cards as needed */}
