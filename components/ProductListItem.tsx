@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, Image, ImageSourcePropType, TouchableOpacity } from 'react-native';
+import {
+   View,
+   Text,
+   Image,
+   ImageSourcePropType,
+   TouchableOpacity,
+} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Colors } from '../constants/Colors';
 import { useRouter } from 'expo-router';
@@ -26,9 +32,9 @@ const ProductListItem: React.FC<ProductListItemProps> = ({
    const router = useRouter();
 
    return (
-      <TouchableOpacity 
+      <TouchableOpacity
          className="flex-row bg-white p-4 rounded-xl mb-4 shadow-sm"
-         onPress={() => router.push(`/product/${id}`)}
+         onPress={() => router.push(`/product-details`)}
       >
          {/* Image Section (25%) */}
          <View className="w-[25%] pr-3">

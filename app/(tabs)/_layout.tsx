@@ -1,68 +1,46 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Feather } from '@expo/vector-icons';
+import HomeScreen from './index';
+import ProductScreen from './product';
+import TransactionScreen from './transaction';
+import AccountScreen from './account';
+import { Colors } from '../../constants/Colors';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+const Tab = createBottomTabNavigator();
 
-export default function TabLayout() {
-   const colorScheme = useColorScheme();
-
+const TabLayout: React.FC = () => {
    return (
-      <Tabs
-         screenOptions={{
-            tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+      <Tab.Navigator
+         screenOptions={({ route }) => ({
+            tabBarIcon: ({ color, size }) => {
+               let iconName: string;
+
+               if (route.name === 'Home') {
+                  iconName = 'home';
+               } else if (route.name === 'Product') {
+                  iconName = 'shopping-bag';
+               } else if (route.name === 'Transaction') {
+                  iconName = 'file-text';
+               } else if (route.name === 'Account') {
+                  iconName = 'user';
+               } else {
+                  iconName = 'circle'; // Fallback icon if none of the routes match
+               }
+
+               return <Feather name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: Colors.light.primary,
+            tabBarInactiveTintColor: Colors.light.icon,
             headerShown: false,
-            tabBarButton: HapticTab,
-            tabBarBackground: TabBarBackground,
-            tabBarStyle: Platform.select({
-               ios: {
-                  // Use a transparent background on iOS to show the blur effect
-                  position: 'absolute',
-               },
-               default: {},
-            }),
-         }}
+         })}
       >
-         <Tabs.Screen
-            name="index"
-            options={{
-               title: 'Home',
-               tabBarIcon: ({ color }) => (
-                  <IconSymbol size={28} name="house.fill" color={color} />
-               ),
-            }}
-         />
-         <Tabs.Screen
-            name="product"
-            options={{
-               title: 'Product',
-               tabBarIcon: ({ color }) => (
-                  <IconSymbol size={28} name="cart.fill" color={color} />
-               ),
-            }}
-         />
-         <Tabs.Screen
-            name="transaction"
-            options={{
-               title: 'Transaction',
-               tabBarIcon: ({ color }) => (
-                  <IconSymbol size={28} name="creditcard.fill" color={color} />
-               ),
-            }}
-         />
-         <Tabs.Screen
-            name="account"
-            options={{
-               title: 'Account',
-               tabBarIcon: ({ color }) => (
-                  <IconSymbol size={28} name="person.fill" color={color} />
-               ),
-            }}
-         />
-      </Tabs>
+         <Tab.Screen name="Home" component={HomeScreen} />
+         <Tab.Screen name="Product" component={ProductScreen} />
+         <Tab.Screen name="Transaction" component={TransactionScreen} />
+         <Tab.Screen name="Account" component={AccountScreen} />
+      </Tab.Navigator>
    );
-}
+};
+
+export default TabLayout;
