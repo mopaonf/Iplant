@@ -12,6 +12,8 @@ import {
 import { Feather } from '@expo/vector-icons';
 import { Colors } from '../../constants/Colors';
 import { useNavigation } from '@react-navigation/native';
+import { LineChart } from 'react-native-chart-kit'; // Add this import for the chart
+import { useRouter } from 'expo-router';
 
 const { height, width } = Dimensions.get('window');
 
@@ -31,6 +33,8 @@ const ProductDetailsScreen: React.FC = () => {
       require('../../assets/images/Product_WhitePepper.png'),
       require('../../assets/images/Product_WhitePepper.png'),
    ];
+
+   const router = useRouter();
 
    useEffect(() => {
       const interval = setInterval(() => {
@@ -155,7 +159,7 @@ const ProductDetailsScreen: React.FC = () => {
                            Durian Investment
                         </Text>
                         <Text className="text-green-600 font-semibold mb-4">
-                           Rp 9.000.000 <Text className="text-sm">/unit</Text>
+                           FCFA 9.000.000 <Text className="text-sm">/unit</Text>
                         </Text>
                         {/* Investment Details */}
                         <View className="flex flex-col gap-4 mb-4">
@@ -225,7 +229,7 @@ const ProductDetailsScreen: React.FC = () => {
                            the durian while others detest it. Therefore, people
                            always look for improved varieties, the most superior
                            variety is the Weasel King, whose price could reach
-                           Rp 250.000,- (equal to $20) per piece in the import
+                           FCFA 250.000,- (equal to $20) per piece in the import
                            fruit market.
                            {'\n\n'}
                            Durian trees begin to bear fruits at the age of 5
@@ -238,8 +242,8 @@ const ProductDetailsScreen: React.FC = () => {
                            Assuming the land lease in Java for this durian plan
                            happens in the long term (18 years), planting durian
                            will be beneficial economically with an IRR of 18%
-                           from the investment value of Rp 5.000.000,- (equal to
-                           $394) per tree - including the cost of land lease,
+                           from the investment value of FCFA 5.000.000,- (equal
+                           to $394) per tree - including the cost of land lease,
                            seeds, care, supervision, etc.
                         </Text>
                         {/* Geographical Location */}
@@ -260,16 +264,62 @@ const ProductDetailsScreen: React.FC = () => {
                         <Text className="text-lg font-semibold mb-2">
                            Manager & Statistics
                         </Text>
-                        <Text className="text-sm text-gray-600 leading-6">
-                           This section contains information about the farm
-                           managers, crop health statistics, historical yields,
-                           and real-time monitoring systems. Detailed reports on
-                           production cycles and financial summaries will help
-                           investors understand risk and optimize profits.
-                           {'\n\n'}
-                           More features coming soon, including transparency
-                           logs, farm visit schedules, and manager performance
-                           scores.
+
+                        {/* Add a chart for FCFA/year */}
+                        <LineChart
+                           data={{
+                              labels: [
+                                 'Year 1',
+                                 'Year 2',
+                                 'Year 3',
+                                 'Year 4',
+                                 'Year 5',
+                              ],
+                              datasets: [
+                                 {
+                                    data: [
+                                       500000, 1000000, 1500000, 2000000,
+                                       2500000,
+                                    ],
+                                 },
+                              ],
+                           }}
+                           width={width * 0.8} // Chart width
+                           height={220} // Chart height
+                           yAxisSuffix=" FCFA"
+                           chartConfig={{
+                              backgroundColor: '#ffffff',
+                              backgroundGradientFrom: '#f7f7f7',
+                              backgroundGradientTo: '#e8e8e8',
+                              decimalPlaces: 0,
+                              color: (opacity = 1) =>
+                                 `rgba(0, 122, 255, ${opacity})`,
+                              labelColor: (opacity = 1) =>
+                                 `rgba(0, 0, 0, ${opacity})`,
+                              style: {
+                                 borderRadius: 16,
+                              },
+                              propsForDots: {
+                                 r: '6',
+                                 strokeWidth: '2',
+                                 stroke: '#ffa726',
+                              },
+                           }}
+                           style={{
+                              marginVertical: 8,
+                              borderRadius: 16,
+                           }}
+                        />
+                        {/* Add managerial content */}
+                        <Text className="text-sm text-gray-600 leading-6 mt-4">
+                           Our experienced farm managers ensure optimal crop
+                           health and yield. They use advanced monitoring
+                           systems to track growth and address issues in real
+                           time. Regular reports are provided to investors,
+                           detailing production cycles, financial summaries, and
+                           risk assessments. Transparency is our priority, and
+                           we welcome investors to visit the farm and interact
+                           with the management team.
                         </Text>
                      </>
                   )}
@@ -289,7 +339,10 @@ const ProductDetailsScreen: React.FC = () => {
                marginBottom: 15,
             }}
          >
-            <TouchableOpacity className="flex-1 bg-gray-100 p-3 mx-2 rounded-lg items-center">
+            <TouchableOpacity
+               className="flex-1 bg-gray-100 p-3 mx-2 rounded-lg items-center"
+               onPress={() => router.push('/profit-simulation')}
+            >
                <Text className="text-sm font-medium text-gray-700">
                   Profit Simulation
                </Text>
