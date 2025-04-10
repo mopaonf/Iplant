@@ -47,24 +47,31 @@ const ProfitSimulationScreen: React.FC = () => {
          <View
             style={{
                height: 60,
-               backgroundColor: Colors.dark.primaryDark,
+               backgroundColor: Colors.light.white,
                justifyContent: 'center',
                paddingHorizontal: 16,
                marginTop: 40,
                position: 'absolute',
                width: '100%',
                zIndex: 10,
+               borderBottomWidth: 1, // Add bottom border
+               borderBottomColor: '#e0e0e0', // Light gray color for the bottom border
+               shadowColor: '#000', // Add shadow color
+               shadowOffset: { width: 0, height: 2 }, // Shadow only below the header
+               shadowOpacity: 0.1, // Subtle shadow opacity
+               shadowRadius: 3, // Subtle shadow radius
+               elevation: 3, // Add elevation for Android
             }}
          >
             <View className="flex-row items-center">
                <TouchableOpacity onPress={() => navigation.goBack()}>
-                  <Feather name="arrow-left" size={24} color="white" />
+                  <Feather name="arrow-left" size={24} color="black" />
                </TouchableOpacity>
                <View className="pl-32 items-center">
-                  <Text className="text-white text-lg font-bold">
+                  <Text className="text-black text-lg font-bold">
                      Durian Investment
                   </Text>
-                  <Text className="text-white italic text-sm">
+                  <Text className="text-black italic text-sm">
                      Profit Simulator
                   </Text>
                </View>

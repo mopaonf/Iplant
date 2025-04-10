@@ -56,6 +56,13 @@ const ProductDetailsScreen: React.FC = () => {
                position: 'absolute',
                width: '100%',
                zIndex: 10,
+               borderBottomWidth: 1, // Add bottom border
+               borderBottomColor: '#e0e0e0', // Light gray color for the bottom border
+               shadowColor: '#000', // Add shadow color
+               shadowOffset: { width: 0, height: 2 }, // Shadow only below the header
+               shadowOpacity: 0.1, // Subtle shadow opacity
+               shadowRadius: 3, // Subtle shadow radius
+               elevation: 3, // Add elevation for Android
             }}
          >
             <View className="flex-row items-center justify-between">
